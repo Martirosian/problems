@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<title>SchoolApply - Homepage</title>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta content="SchoolApply Description" name="description"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+		<!-- Icons -->
+		<link rel="shortcut icon" href="images/icons/favicon.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="images/icons/apple-icon.png">
+		<link rel="icon" type="image/png" sizes="192x192" href="images/icons/android-icon.png">
+		<meta name="msapplication-TileImage" content="images/icons/ms-icon.png">
+
+		<!-- Theme Colors -->
+		<meta name="msapplication-TileColor" content="#ffffff">
+		<meta name="theme-color" content="#ffffff">
+
+		<!-- Bootstrap v4 CSS -->
+		<link rel="stylesheet" href="css/bootstrap.css">
+
+		<!-- Custom styles -->
+		<style type="text/css">
+			.navbar{
+				box-shadow: 0 1px 0 0 rgba(0,0,0,0.20);
+			}
+
+			#navbarSupportedContent form.fluid{
+				position: absolute!important;
+				right: 0;
+				left: 119px;
+			}
+
+			#navbarSupportedContent form.fluid input{
+				width: calc( 100% - 40px );
+			}
+
+			#navbarSupportedContent form.fluid .clear-search{
+				cursor: pointer;
+				display: block!important;
+			}
+			.search-results{
+				position: absolute;
+				top: 60px;
+				left: 15px;
+				right: 20px;
+				display: none;
+			}
+
+			@media (max-width: 768px) { 
+				#navbarSupportedContent form.form-inline.fluid{
+					position: static!important;
+				}
+				#search-input{
+					display: inline-block;
+					width: auto;
+				}
+				.search-results{
+					top: 80px;
+				}
+			}
+		</style>
+
+		<!-- Bootstrap v4 JS -->
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+
+		<script type="text/javascript">
+			jQuery(document).ready(function($) {
+				var searchResults = $('.search-results');
+				
+				// Add Class to Form when focus on Search
+				$('#search-input').focus(function() {
+					$(this).parent().addClass('fluid');
+				});
+
+				// Clear search input and remove class from Form when clicked on close button
+				$('.clear-search').click(function(event) {
+					$(this).prev().val('');
+					$(this).parent().removeClass('fluid');
+					searchResults.hide();
+				});
+
+				// Show/Hide search results list when typing/Focusout 
+
+				$('#search-input').on('keyup', function(event) {
+					
+					!searchResults.is('.show') ? searchResults.show() : searchResults.hide();
+
+					if ( $(this).val() == '') {
+						searchResults.hide()
+					}
+
+				}).keydown(function(event){
+					if (event.keyCode === 9) {
+						event.preventDefault();
+
+						searchResults.find('.list-group:first-child a:first-child').focus()
+					}
+				});
+
+				// Hide list when clicked outside of search results
+				$(document).click(function(e){
+				    if( $(e.target).closest("#navbarSupportedContent").length > 0 ) {
+				        return false;
+				    }
+				    else{
+				    	searchResults.hide()
+				    }
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<div class="container position-relative">
+				<a class="navbar-brand font-weight-bold text-uppercase" href="#">schoolapply</a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<form class="form-inline bg-white my-2 my-lg-0 ml-lg-5 px-sm-3">
+						<button class="btn bg-white p-0" type="submit">
+							<svg class="mt-2" xmlns="http://www.w3.org/2000/svg" width="17.5" height="17.5" viewBox="0 0 24 24"><path d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z"/></svg>
+						</button>
+
+						<input id="search-input" class="form-control text-uppercase border-0 " type="search" placeholder="SEARCH..." aria-label="Search">
+						
+						<div class="clear-search d-none">
+							<svg class="mt-2" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24"><path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"/></svg>
+						</div>
+
+						<div class="search-results pt-1 bg-light">
+							<div class="list-group">
+								<a href="javascript:void(0)" class="list-group-item active text-uppercase">
+								SCHOOLS
+								</a>
+								<a href="#" class="list-group-item list-group-item-action"><b>Interactive</b> College of Technology</a>
+								<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+								<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+							</div>
+							<div class="list-group">
+								<a href="javascript:void(0)" class="list-group-item active text-uppercase">
+								SCHOOLS
+								</a>
+								<a href="#" class="list-group-item list-group-item-action"><b>Interactive</b> College of Technology</a>
+								<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+								<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+							</div>
+							<div class="list-group">
+								<a href="javascript:void(0)" class="list-group-item active text-uppercase">
+								SCHOOLS
+								</a>
+								<a href="#" class="list-group-item list-group-item-action"><b>Interactive</b> College of Technology</a>
+								<a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+								<a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
+								<a href="#" class="btn btn-link text-left text-dark text-uppercase py-4 px-4">
+									VIEW ALL RESULTS
+									<svg class="ml-2" xmlns="http://www.w3.org/2000/svg" width="7" height="10" fill="#ff4e9d" viewBox="0 0 24 24"><path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z"/></svg>
+								</a>
+							</div>
+						</div>		
+					</form>
+
+					<ul class="navbar-nav ml-auto text-uppercase  font-weight-normal">
+						<li class="nav-item active">
+							<a class="nav-link" href="#">Schools <span class="sr-only">(current)</span></a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Blog</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Contact Us</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">Profile</a>
+						</li>
+						<li class="ml-3">
+							<a class="btn btn-sm btn-light text-dark border align-middle btn-outline-secondary" href="#">NEED HELP APPLYING?</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+	</body>
+</html>
